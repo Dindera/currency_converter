@@ -1,7 +1,8 @@
-import {convertAmount, populateCurrencyOptions }from './dist/coverterapi';
-// import FreeCurrencyConverter
-// import * as FreeCurrencyConverter from "./dist/coverterapi";
-class FreeCurrencyConverter {
+
+// import FreeCurrencyConverter  from './dist/coverterapi';
+
+
+ class FreeCurrencyConverter {
     
     constructor() {
         this.apiUrl = 'https://free.currencyconverterapi.com';
@@ -55,12 +56,81 @@ class FreeCurrencyConverter {
 
 
 
+ function convertAmount(conversionRate){
+    let resultElement = document.getElementById('conversion');
+    resultElement.innerText = "";
+  
+    let from = document.getElementById('from-currency').value;
+    let to = document.getElementById('to-currency').value;
+    // let symblol = document.getElementById('symbol')
+    
+    let amount = parseFloat(document.getElementById('amount').value);
+
+    // conversionRate.getCountries((currencySymbol)=>{
+    //     console.log('currency-symblol', currencySymbol);
+    //     let symbol = `${currencySymbol[currencySymbol]['currencySymbol']}`;
+    // })
+  
+    conversionRate.convert(from, to, amount, (err, amount) => {
+        console.log(amount);
+        console.log(typeof amount);
+     
+    //     symbol = conversionRate.getCountries((currencySymbol)=> {
+         
+    //  })
+
+        if (amount <= 0 || isNaN(amount)) {
+            amount = '0.00';
+        }
+  
+        resultElement.innerText = `${to} ${amount}`;
+    });
+    
+  }
+  
+  
+ function populateCurrencyOptions(conversionRate){
+ 
+  
+    let elements = [
+        document.getElementById('from-currency'),
+        document.getElementById('to-currency')
+    ];
+   
+
+    // this.symblol =  countryAbbreviations[countryAbbreviation]['currencySymbol'];
+
+    conversionRate.getCountries((countryAbbreviations) => {
+        console.log('countryAbbreviations: ', countryAbbreviations);
+      
+
+        for (let el in elements) {
+            for (let countryAbbreviation in countryAbbreviations) {
+                let option = document.createElement("option");
+                option.text = `${countryAbbreviations[countryAbbreviation]['name']} - ${countryAbbreviations[countryAbbreviation]['currencyId']}`;
+                option.value = countryAbbreviations[countryAbbreviation]['currencyId'];
+                elements[el].add(option);
+
+                
+            }
+        }
+
+       
+    });
+
+  
+  }
+  
+  
+
+
 window.addEventListener('DOMContentLoaded', function() {
     let conversionRate = new FreeCurrencyConverter();
-
+    // this.covertAmt = convertAmount(); 
     // Populate currency fields
+    // this.populate = populateCurrencyOptions();
     populateCurrencyOptions(conversionRate);
-
+    
     document.getElementById('convert-amount').addEventListener('click', function () {
         convertAmount(conversionRate);
     }, true);
