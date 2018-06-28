@@ -11,10 +11,10 @@ self.addEventListener("install", event => {
                             console.log('Service Worker Caching files');
                            return cache.addAll([
                                '/skeleton',
-                               './index.html',
-                               './public/css/styles.css',
-                               './public/js/converter.js',
-                               './public/js/sw/registersw.js',
+                               '/index.html',
+                               '/public/css/styles.css',
+                               '/public/js/converter.js',
+                               '/public/js/sw/registersw.js',
                                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
                                'https://free.currencyconverterapi.com/api/v5/countries',
                                'https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y',
@@ -47,7 +47,7 @@ self.addEventListener("fetch", (event) => {
    
     if(getUrl.origin === location.origin){
        if(getUrl.pathname === '/'){
-           event.respondWith(caches.match('./index.html'));
+           event.respondWith(caches.match('/skeleton'));
            return;
        }
     }
