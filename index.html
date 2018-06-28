@@ -10,13 +10,41 @@
 
 	</head>
 	<body>
-		<header class="container-fluid">
+		<header class="container-fluid bg-info p-3">
 
-
+			<div class="text-center"><h3>Convert Currency</h3></div>
+            
 						
 		</header>
 		<main>
-
+			<div>
+				
+				<div class="container">
+					<div class="text-center" style="font-size: larger; font-weight: bold; color:saddlebrown" id="conversion"></div>
+					<br />
+					<div class="form-group">
+						<select class="form-control" id="from-currency">
+							<option value="USD" selected>USD</option>
+							<option value="GBP">GBP</option>
+							<option value="NGN">NGN</option>
+							<option value="AUD">AUD</option>
+							<option value="PHP">PHP</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-control" id="to-currency">
+							<option value="GBP" selected>GBP</option>
+							<option value="USD">USD</option>
+							<option value="NGN">NGN</option>
+							<option value="PHP">PHP</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="number" id="amount"/>
+					</div>
+					<button id="convert-amount" class="form-control btn-primary">Convert</button>
+				</div>
+			</div>
         </main>
         <footer>
         	
