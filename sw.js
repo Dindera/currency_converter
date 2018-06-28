@@ -10,7 +10,6 @@ self.addEventListener("install", event => {
             caches.open(cacheName).then((cache) => { //catch that promise
                             console.log('Service Worker Caching files');
                            return cache.addAll([
-                               '/skeleton',
                                '/index.html',
                                '/public/css/styles.css',
                                '/public/js/converter.js',
@@ -47,7 +46,7 @@ self.addEventListener("fetch", (event) => {
    
     if(getUrl.origin === location.origin){
        if(getUrl.pathname === '/'){
-           event.respondWith(caches.match('/skeleton'));
+           event.respondWith(caches.match('/index.html'));
            return;
        }
     }
