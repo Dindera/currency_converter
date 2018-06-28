@@ -1,4 +1,8 @@
-
+.result{
+	font-size: larger;
+	font-weight: bold;
+	color:  saddlebrown;
+}
 
 .currency{
 	padding: 30px;

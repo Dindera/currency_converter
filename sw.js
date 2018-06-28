@@ -62,4 +62,3 @@ self.addEventListener("fetch", (event) => {
                         );
            });
 
-//https://github.com/Dindera/currency_converter.git
