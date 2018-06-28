@@ -1,0 +1,12 @@
+
+.currency{
+	padding: 30px;
+	position: absolute;
+	left: 280px;
+	border: 3px solid saddlebrown;
+}
+
+.footCopy{
+	position: relative;
+    top: 150px;
+}
