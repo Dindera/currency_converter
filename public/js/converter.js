@@ -61,8 +61,8 @@ class FreeCurrencyConverter {
     let amount = parseFloat(document.getElementById('amount').value);
   
     conversionRate.convert(from, to, amount, (err, amount) => {
-        console.log(amount);
-        console.log(typeof amount);
+        // console.log(amount);
+        // console.log(typeof amount);
   
   
         if (amount <= 0 || isNaN(amount)) {
