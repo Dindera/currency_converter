@@ -1,6 +1,4 @@
-import {convertAmount, populateCurrencyOptions }from './dist/coverterapi';
-// import FreeCurrencyConverter
-// import * as FreeCurrencyConverter from "./dist/coverterapi";
+
 class FreeCurrencyConverter {
     
     constructor() {
