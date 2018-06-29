@@ -49,12 +49,12 @@ class FreeCurrencyConverter {
             .then(function(response) {
                 return response.json();
             }).then(json => {
-            
+                // let val = json[query]['val'];
                 dbPromise.then(db=>{
                     let rates = db.transaction('rates', 'readwrite')
                    let  rateStore = rates.objectStore('rates');
-                    json.query = query; 
-                    console.log(json)[]
+                   json.query = query;                    
+                    console.log(json);
                     rateStore.put(json);
                    }).then(val =>{
                        console.log('The value result is', val);

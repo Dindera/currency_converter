@@ -13,7 +13,6 @@ self.addEventListener("install", event => {
                                './index.html',
                                './public/css/styles.css',
                                './public/js/sw/registersw.js',
-                               './public/js/indexedb/idb.js',
                                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
                                'https://free.currencyconverterapi.com/api/v5/countries',
                                'https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y',
@@ -52,7 +51,7 @@ self.addEventListener("fetch", (event) => {
     }
        event.respondWith(caches.match(event.request).then(response => {
                  if(response) {	
-                         console.log(`Found ${getUrl} from cache, refresh to update`);
+                        //  console.log(`Found ${getUrl} from cache, refresh to update`);
                                  return response;
                                 }else {
                                     console.log(event.request.url+" not found in cache fetching from network.");
