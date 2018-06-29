@@ -1,4 +1,30 @@
 
+const dbPromise = idb.open('currency_converter', 2, dbUpgrade =>{
+    switch(dbUpgrade.oldVersion) {
+      case 0:
+        let countryStore = dbUpgrade.createObjectStore('countries');
+   
+      case 1:
+       let rateStore =  dbUpgrade.createObjectStore('rates');
+  
+   
+    }
+  });
+  
+
+
+
+
+//   dbPromise.then(db=>{
+//     let countries = db.transaction('countries').objectStore('countries');
+//    return countries.put();
+//    }).then( val => {
+//        console.log('The value result is', val);
+//    });
+
+
+
+
 class FreeCurrencyConverter {
     
     constructor() {
@@ -11,8 +37,7 @@ class FreeCurrencyConverter {
         fetch(this.apiUrl + this.countriesEndpoint)
             .then(function(response) {
                 return response.json();
-            })
-            .then(function(results) {
+            }).then(function(results) {
                 if (typeof results['results'] != "undefined") {
                     callback(results['results'])
                 } else {
@@ -32,8 +57,17 @@ class FreeCurrencyConverter {
             .then(function(response) {
                 return response.json();
             }).then(json => {
+                let val = json[query]['val'];
+                dbPromise.then(db=>{
+                    let rates = db.transaction('rates', 'readwrite')
+                   let  rateStore = rates.objectStore('rates');
+                    rateStore.put(json);
+                   }).then(val =>{
+                       console.log('The value result is', val);
+                   });
+                
             console.log('RES',json);
-            let val = json[query]['val'];
+           
   
             if (val) {
                 let total = val * amount;
@@ -63,7 +97,7 @@ class FreeCurrencyConverter {
     conversionRate.convert(from, to, amount, (err, amount) => {
         // console.log(amount);
         // console.log(typeof amount);
-  
+        console.log(json);
   
         if (amount <= 0 || isNaN(amount)) {
             amount = '0.00';
