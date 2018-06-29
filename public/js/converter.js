@@ -1,29 +1,21 @@
 
-const dbPromise = idb.open('currency_converter', 2, dbUpgrade =>{
+const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
     switch(dbUpgrade.oldVersion) {
       case 0:
         let countryStore = dbUpgrade.createObjectStore('countries');
    
       case 1:
-       let rateStore =  dbUpgrade.createObjectStore('rates');
+       let rateStore =  dbUpgrade.createObjectStore('rates', {keyPath: 'query'});
   
    
     }
   });
-  
-
-
-
-
 //   dbPromise.then(db=>{
 //     let countries = db.transaction('countries').objectStore('countries');
 //    return countries.put();
 //    }).then( val => {
 //        console.log('The value result is', val);
 //    });
-
-
-
 
 class FreeCurrencyConverter {
     
@@ -57,10 +49,12 @@ class FreeCurrencyConverter {
             .then(function(response) {
                 return response.json();
             }).then(json => {
-                let val = json[query]['val'];
+            
                 dbPromise.then(db=>{
                     let rates = db.transaction('rates', 'readwrite')
                    let  rateStore = rates.objectStore('rates');
+                    json.query = query; 
+                    console.log(json)[]
                     rateStore.put(json);
                    }).then(val =>{
                        console.log('The value result is', val);
@@ -68,7 +62,7 @@ class FreeCurrencyConverter {
                 
             console.log('RES',json);
            
-  
+            let val = json[query]['val'];
             if (val) {
                 let total = val * amount;
                 callback(null, Math.round(total * 100) / 100);
@@ -97,7 +91,7 @@ class FreeCurrencyConverter {
     conversionRate.convert(from, to, amount, (err, amount) => {
         // console.log(amount);
         // console.log(typeof amount);
-        console.log(json);
+       console.log(json);
   
         if (amount <= 0 || isNaN(amount)) {
             amount = '0.00';
