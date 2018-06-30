@@ -169,21 +169,37 @@ class FreeCurrencyConverter {
                 console.log(err);
                 callback(err);
             }
-        }).catch(err => {
-            console.log("Parse error: ", err);
-            callback(err);
+        }).catch((err) => {dbPromise.then(db => {
+            let rates = db.transaction('rates');
+            let ratesStore = rates.objectStore('rates');
+            // json.query = query;
+            // console.log(json);
+             ratesStore.get(query);
+        }).get(query).then(json=> {
+            let val = json[query]['val'];
+            if (val) {
+                let total = val * amount;
+                callback(null, Math.round(total * 100) / 100);
+            }
+            else {
+                let err = new Error("Value not found for " + query);
+                console.log(err);
+                callback(err);
+            }
         });
-    }
+    });
   }
+}
+
 
   function convertAmount(conversionRate){
-    let resultElement = document.getElementById('conversion');
+    const resultElement = document.getElementById('conversion');
     resultElement.innerText = "";
   
-    let from = document.getElementById('from-currency').value;
-    let to = document.getElementById('to-currency').value;
+    const from = document.getElementById('from-currency').value;
+    const to = document.getElementById('to-currency').value;
   
-    let amount = parseFloat(document.getElementById('amount').value);
+    const amount = parseFloat(document.getElementById('amount').value);
   
     conversionRate.convert(from, to, amount, (err, amount) => {
         // console.log(amount);

@@ -1,14 +1,15 @@
 
 const cacheName = "currency_converter_v1";
-const convertCache = 'currency_converter_ids'
+const convertCache = 'currency_converter_idb'
 const cacheAll = [cacheName, convertCache];
 
-
-
+/*
+Install caches in storage
+*/
 self.addEventListener("install", (event) => {
     console.log('Service Worker Installing');
     event.waitUntil(
-            caches.open(cacheName).then((cache) => { //catch that promise
+            caches.open(cacheName).then((cache) => { 
                 
                         return cache.addAll([
                                'index.html',
@@ -46,7 +47,7 @@ self.addEventListener("fetch", (event) => {
     let getUrl = new URL(event.request.url);
    
     if(getUrl.origin === location.origin){
-        console.log('fectching url')
+        console.log('fetching url')
        if(getUrl.pathname === '/'){
            event.respondWith(caches.match('index.html'));
          
