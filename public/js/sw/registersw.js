@@ -1,7 +1,7 @@
 // check if Service Worker support exists in browser or not
 if( 'serviceWorker' in navigator ) {
     //Service Worker support exists
-    navigator.serviceWorker.register( './sw.js' , { scope : '' } )  
+    navigator.serviceWorker.register( 'sw.js')  
             .then( function( ) { 
                 console.log('Service Worker Registered');
             })
