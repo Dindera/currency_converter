@@ -47,7 +47,7 @@ self.addEventListener("fetch", (event) => {
     let getUrl = new URL(event.request.url);
    
     if(getUrl.origin === location.origin){
-        console.log('fetching url')
+        console.log('fetching url :' + getUrl.pathname);
        if(getUrl.pathname === '/'){
            event.respondWith(caches.match('index.html'));
          

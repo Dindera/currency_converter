@@ -28,16 +28,9 @@ const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
 
 //Check for service worker update
 const _updateReady = (worker) => {
-        // console.log('New Version Available')
-        //     .then(() => {
-        //         worker.postMessage({ action: 'skipWaiting' })
-        //     }, () => {
-        //      console.log('err');
-        //     })
             console.log('New Version Available')
              worker.postMessage({ action: 'skipWaiting' })
-    
-
+            console.log('err');
 };
 
 const _trackInstalling = (worker) => {
@@ -74,20 +67,6 @@ if ('serviceWorker' in navigator) {
 }
 
 
-// check if Service Worker support exists in browser or not
-// if( 'serviceWorker' in navigator ) {
-//     //Service Worker support exists
-//     navigator.serviceWorker.register( '/sw.js').then( function( ) { 
-//                 console.log('Service Worker Registered');
-//             })
-//             .catch( function( err) {
-//                 console.log(`Service Worker Error :- ${err}`);
-//             });
-// } else {
-
-// }
-
-
 
 
 
@@ -117,8 +96,24 @@ class FreeCurrencyConverter {
                 } else {
                     callback({'Error': 'Not found'})
                 }
-            });
-  
+            }).catch(err => {
+                dbPromise.then(db=>{
+                    let countries = db.transaction('countries');
+                   let  countriesStore = countries.objectStore('countries');
+                    // countriesStore.put(countryAbbreviations[countryAbbreviation]);
+    
+                    countriesStore.getAll().then(results => {
+                        if (typeof results != "undefined") {
+                            callback(results);
+                        } else {
+                            console.log(err);
+                            callback(err);
+                        
+                    }   
+
+            }); 
+        })
+      })
     }
   
     convert(fromCurrency, toCurrency, amount, callback){
