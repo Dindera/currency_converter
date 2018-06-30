@@ -11,10 +11,10 @@ self.addEventListener("install", (event) => {
             caches.open(cacheName).then((cache) => { //catch that promise
                 
                         return cache.addAll([
-                               'currency_converter/index.html',
-                               'currency_converter/public/css/styles.css',
-                               'currency_converter/public/js/converter.js',
-                               'currency_converter/public/js/indexedb/idb.js',
+                               'index.html',
+                               'public/css/styles.css',
+                               'public/js/converter.js',
+                               'public/js/indexedb/idb.js',
                                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
                                'https://free.currencyconverterapi.com/api/v5/countries',
                                'https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y',
