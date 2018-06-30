@@ -37,7 +37,7 @@ const _updateReady = (worker) => {
 
 };
 
-const trackInstalling = (worker) => {
+const _trackInstalling = (worker) => {
     worker.addEventListener('statechange', () => {
         if (worker.state === 'installed') {
              _updateReady(worker);
