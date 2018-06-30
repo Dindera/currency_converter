@@ -1,7 +1,7 @@
 
-let cacheName = "currency_converter_v1";
-let convertCache = 'currency_converter_ids'
-let cacheAll = [cacheName, convertCache];
+const cacheName = "currency_converter_v1";
+const convertCache = 'currency_converter_ids'
+const cacheAll = [cacheName, convertCache];
 
 
 

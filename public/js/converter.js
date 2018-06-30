@@ -188,7 +188,7 @@ class FreeCurrencyConverter {
     conversionRate.convert(from, to, amount, (err, amount) => {
         // console.log(amount);
         // console.log(typeof amount);
-       console.log(json);
+    //    console.log(json);
   
         if (amount <= 0 || isNaN(amount)) {
             amount = '0.00';
