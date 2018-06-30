@@ -4,6 +4,7 @@ let convertCache = 'currency_converter_ids'
 let cacheAll = [cacheName, convertCache];
 
 
+
 self.addEventListener("install", event => {
     console.log('Service Worker Installing');
     event.waitUntil(
@@ -12,7 +13,7 @@ self.addEventListener("install", event => {
                            return cache.addAll([
                                './index.html',
                                './public/css/styles.css',
-                               './public/js/sw/registersw.js',
+                               './public/js/converter.js',
                                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
                                'https://free.currencyconverterapi.com/api/v5/countries',
                                'https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y',
