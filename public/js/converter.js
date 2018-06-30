@@ -28,12 +28,15 @@ const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
 
 //Check for service worker update
 const _updateReady = (worker) => {
-        console.log('New Version Available')
-            .then(() => {
-                worker.postMessage({ action: 'skipWaiting' })
-            }, () => {
-             console.log('err');
-            })
+        // console.log('New Version Available')
+        //     .then(() => {
+        //         worker.postMessage({ action: 'skipWaiting' })
+        //     }, () => {
+        //      console.log('err');
+        //     })
+            console.log('New Version Available')
+             worker.postMessage({ action: 'skipWaiting' })
+    
 
 };
 
@@ -169,25 +172,44 @@ class FreeCurrencyConverter {
                 console.log(err);
                 callback(err);
             }
-        }).catch((err) => {dbPromise.then(db => {
-            let rates = db.transaction('rates');
-            let ratesStore = rates.objectStore('rates');
-            // json.query = query;
-            // console.log(json);
-             ratesStore.get(query);
-        }).get(query).then(json=> {
-            let val = json[query]['val'];
-            if (val) {
-                let total = val * amount;
-                callback(null, Math.round(total * 100) / 100);
-            }
-            else {
-                let err = new Error("Value not found for " + query);
-                console.log(err);
-                callback(err);
-            }
+        }).catch((err) => {
+            dbPromise.then(db => {
+                let rates = db.transaction('rates');
+                let ratesStore = rates.objectStore('rates');
+                // json.query = query;
+                // console.log(json);
+                ratesStore.get(query).then(json => {
+                    let val = json[query]['val'];
+                    if (val) {
+                        let total = val * amount;
+                        callback(null, Math.round(total * 100) / 100);
+                    } else {
+                        let err = new Error("Value not found for " + query);
+                        console.log(err);
+                        callback(err);
+                    }
+                });
+            })
         });
-    });
+    //     .catch((err) => {dbPromise.then(db => {
+    //         let rates = db.transaction('rates');
+    //         let ratesStore = rates.objectStore('rates');
+    //         // json.query = query;
+    //         // console.log(json);
+    //          ratesStore.get(query);
+    //     }).get(query).then(json=> {
+    //         let val = json[query]['val'];
+    //         if (val) {
+    //             let total = val * amount;
+    //             callback(null, Math.round(total * 100) / 100);
+    //         }
+    //         else {
+    //             let err = new Error("Value not found for " + query);
+    //             console.log(err);
+    //             callback(err);
+    //         }
+    //     });
+    // });
   }
 }
 
