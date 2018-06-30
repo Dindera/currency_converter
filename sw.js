@@ -12,7 +12,7 @@ self.addEventListener("install", (event) => {
                 
                         return cache.addAll([
                                'currency_converter/index.html',
-                               'currency_converterpublic/css/styles.css',
+                               'currency_converter/public/css/styles.css',
                                'currency_converter/public/js/converter.js',
                                'currency_converter/public/js/indexedb/idb.js',
                                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
