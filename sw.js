@@ -12,7 +12,7 @@ self.addEventListener("install", event => {
                             console.log('Service Worker Caching files');
                            return cache.addAll([
                                'index.html',
-                            //    '/public/css/styles.css',
+                               'public/css/styles.css',
                             //    '/public/js/converter.js',
                             //    'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
                             //    'https://free.currencyconverterapi.com/api/v5/countries',
