@@ -10,15 +10,15 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll([
-        "/currency_converter/index.html",
-        "/currency_converter/sw.js",
-        "/currency_converter/public/css/styles.css",
-        "/currency_converter/public/js/converter.js",
-        "/currency_converter/public/js/indexedb/idb.js",
-        "/currency_converter/public/css/favicon.png",
-        "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
-        "https://free.currencyconverterapi.com/api/v5/countries",
-        "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
+        "currency_converter/index.html",
+        "currency_converter/sw.js",
+        "currency_converter/public/css/styles.css",
+        "currency_converter/public/js/converter.js",
+        "currency_converter/public/js/indexedb/idb.js",
+        "currency_converter/public/css/favicon.png",
+        "currency_converter/https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
+        "currency_converter/https://free.currencyconverterapi.com/api/v5/countries",
+        "currency_converter/https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
       ]);
     })
   );
