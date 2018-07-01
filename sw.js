@@ -14,6 +14,7 @@ self.addEventListener("install", event => {
         "public/css/styles.css",
         "public/js/converter.js",
         "public/js/indexedb/idb.js",
+        "public/css/favicon.png",
         "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
         "https://free.currencyconverterapi.com/api/v5/countries",
         "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
