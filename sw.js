@@ -54,7 +54,7 @@ self.addEventListener("fetch", event => {
     if (getUrl.origin === location.origin) {
         console.log("fetching url :" + getUrl.pathname);
         //handles only index 
-        if (getUrl.pathname === "/" || getUrl === REPO + "/") {
+        if (getUrl.pathname === "/" || getUrl.pathname === REPO + "/") {
             console.log('INDXAAAAA', getUrl.pathname);
             event.respondWith(caches.match(REPO + "/index.html"));
         }
