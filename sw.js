@@ -1,8 +1,10 @@
+
 const cacheName = "currency_converter_v1";
 const convertCache = "currency_converter_idb";
 const cacheAll = [cacheName, convertCache];
+const  REPO = '/currency_converter';///currency_converter
 
-/*
+ /*
 Install caches in storage
 */
 self.addEventListener("install", event => {
@@ -10,12 +12,12 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll([
-        "index.html",
-        "sw.js",
-        "public/css/styles.css",
-        "public/js/converter.js",
-        "public/js/indexedb/idb.js",
-        "public/css/favicon.png",
+        REPO+"/index.html",
+        REPO+ "/sw.js",
+        REPO+"/public/css/styles.css",
+        REPO+"/public/js/converter.js",
+        REPO+"/public/js/indexedb/idb.js",
+        REPO+"/public/css/favicon.png",
         "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
         "https://free.currencyconverterapi.com/api/v5/countries",
         "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
@@ -49,11 +51,17 @@ self.addEventListener("fetch", event => {
 
   if (getUrl.origin === location.origin) {
     console.log("fetching url :" + getUrl.pathname);
-    if (getUrl.pathname === "/") {
-      event.respondWith(caches.match("index.html"));
+    //handles only index 
+    if (getUrl.pathname === "/" || getUrl === REPO+"/") {
+      event.respondWith(caches.match(REPO+"/index.html"));
+    }
+    else{// handle other request from  this site
+       event.respondWith(caches.match(event.request)); 
     }
     return;
   }
+
+  //this only handles external request alone
   event.respondWith(
     caches.match(event.request).then(response => {
       if (response) {
@@ -67,6 +75,8 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
+
 
 self.addEventListener("message", event => {
   if (event.data.action === "skipWaiting") {
