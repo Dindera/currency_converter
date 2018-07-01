@@ -1,4 +1,4 @@
-// const  REPO = '';///currency_converter
+const  REPO = '/currency_converter';///currency_converter
 
 // create a database 
 const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
@@ -33,7 +33,7 @@ const _trackInstalling = (worker) => {
 // register service worker
 if ('serviceWorker' in navigator) {
     
-    navigator.serviceWorker.register('/sw.js', {scope: '/'}).then(reg => {
+    navigator.serviceWorker.register(REPO+'/sw.js', {scope: REPO+'/'}).then(reg => {
 
         if (reg.waiting) {
             _updateReady(reg.waiting);
@@ -50,9 +50,9 @@ if ('serviceWorker' in navigator) {
         console.log('fail', error);
     });
     // Refresh only once
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-        window.location.reload();
-    });
+    // navigator.serviceWorker.addEventListener('controllerchange', () => {
+    //     window.location.reload();
+    // });
 }
 
 //cA class to contain methods for getting countries and converting currencies
