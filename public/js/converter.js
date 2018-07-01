@@ -49,10 +49,10 @@ if ('serviceWorker' in navigator) {
     }).catch(error => {
         console.log('fail', error);
     });
-    // Refresh only once
-    // navigator.serviceWorker.addEventListener('controllerchange', () => {
-    //     window.location.reload();
-    // });
+    //Refresh only once
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+    });
 }
 
 //cA class to contain methods for getting countries and converting currencies
