@@ -1,12 +1,68 @@
-
-.currency{
+#bg-body {
+	background-color: #dde2e3;
+  }
+  
+  .bg-header {
+	background-color: #3c455c;
+	padding: 20px;
+	color: #dde2e3;
+  }
+  
+  select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 1px;
+	text-overflow: "";
+  }
+  
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
+  }
+  #convert-amount {
+	background-color: #3c455c;
+	color: #dde2e3;
+	border: 0px;
+	font-size: 20px;
+	font-weight: bold;
+  }
+  
+  #to-currency,
+  #from-currency,
+  #amount {
+	background-color: #9aacb8;
+	border: 1px solid #60412b;
+  }
+  
+  .form-out {
+	box-shadow: 10px 25px 25px -7px rgba(121, 118, 118, 0.44);
+	padding: 50px;
+  
+	background: #9aacb8;
+  }
+  
+  .result {
+	font-size: larger;
+	font-weight: bold;
+	color: saddlebrown;
+	padding: 30px;
+  }
+  
+  .currency {
 	padding: 30px;
 	position: absolute;
 	left: 280px;
 	border: 3px solid saddlebrown;
-}
-
-.footCopy{
+  }
+  
+  .footCopy {
 	position: relative;
-    top: 150px;
-}
+	top: 150px;
+  }
+  #a {
+	color: #60412b;
+  }
+  
