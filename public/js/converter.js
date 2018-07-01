@@ -32,7 +32,7 @@ const _trackInstalling = (worker) => {
 // register service worker
 if ('serviceWorker' in navigator) {
     
-    navigator.serviceWorker.register('sw.js').then(reg => {
+    navigator.serviceWorker.register('/currency_converter/sw.js', {scope: '/currency_converter/'}).then(reg => {
 
         if (reg.waiting) {
             _updateReady(reg.waiting);
