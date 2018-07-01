@@ -1,4 +1,3 @@
-
 const cacheName = "currency_converter_v1";
 const convertCache = "currency_converter_idb";
 const cacheAll = [cacheName, convertCache];
@@ -12,6 +11,7 @@ self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(cacheName).then(cache => {
             return cache.addAll([
+                REPO,
                 REPO + "/index.html",
                 REPO + "/sw.js",
                 REPO + "/public/css/styles.css",
