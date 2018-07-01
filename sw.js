@@ -1,7 +1,7 @@
 const cacheName = "currency_converter_v1";
 const convertCache = "currency_converter_idb";
 const cacheAll = [cacheName, convertCache];
-const REPO = '';///currency_converter
+// const REPO = '';///currency_converter
 
 /*
 Install caches in storage
@@ -12,26 +12,26 @@ self.addEventListener("install", event => {
         caches.open(cacheName).then(cache => {
             return cache.addAll([
               
-                REPO + "/index.html",
-                REPO + "/sw.js",
-                REPO + "/public/css/styles.css",
-                REPO + "/public/js/converter.js",
-                REPO + "/public/js/indexedb/idb.js",
-                REPO + "/public/css/favicon.png",
-                "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
-                "https://free.currencyconverterapi.com/api/v5/countries",
-                "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
-
-              
-                // "/index.html",
-                // "/sw.js",
-                // "/public/css/styles.css",
-                // "/public/js/converter.js",
-                // "/public/js/indexedb/idb.js",
-                // "/public/css/favicon.png",
+                // REPO + "/index.html",
+                // REPO + "/sw.js",
+                // REPO + "/public/css/styles.css",
+                // REPO + "/public/js/converter.js",
+                // REPO + "/public/js/indexedb/idb.js",
+                // REPO + "/public/css/favicon.png",
                 // "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
                 // "https://free.currencyconverterapi.com/api/v5/countries",
                 // "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
+
+              
+                "index.html",
+                "sw.js",
+                "public/css/styles.css",
+                "public/js/converter.js",
+                "public/js/indexedb/idb.js",
+                "public/css/favicon.png",
+                "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
+                "https://free.currencyconverterapi.com/api/v5/countries",
+                "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
             ]);
         })
     );

@@ -1,4 +1,4 @@
-const  REPO = '';///currency_converter
+// const  REPO = '';///currency_converter
 
 // create a database 
 const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
@@ -33,7 +33,7 @@ const _trackInstalling = (worker) => {
 // register service worker
 if ('serviceWorker' in navigator) {
     
-    navigator.serviceWorker.register(REPO+'/sw.js', {scope: REPO+'/'}).then(reg => {
+    navigator.serviceWorker.register('/sw.js', {scope: '/'}).then(reg => {
 
         if (reg.waiting) {
             _updateReady(reg.waiting);
