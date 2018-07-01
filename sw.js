@@ -53,9 +53,11 @@ self.addEventListener("fetch", event => {
     console.log("fetching url :" + getUrl.pathname);
     //handles only index 
     if (getUrl.pathname === "/" || getUrl === REPO+"/") {
+        console.log('INDXAAAAA',getUrl.pathname );
       event.respondWith(caches.match(REPO+"/index.html"));
     }
     else{// handle other request from  this site
+        console.log('OTHRSAAAAA',getUrl.pathname );
        event.respondWith(caches.match(event.request)); 
     }
     return;
