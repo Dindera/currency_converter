@@ -1,50 +1,59 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Currency Converter</title>
-		<meta charset="UTF-8">
-		<meta name="theme-color" content="#000">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="./public/css/styles.css"> 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	</head>
-	<body>
-		<header class="container-fluid bg-info">		
-			<div class="text-center"><h2 class="p-2 result">Currency Converter</h2></div> 			
-		</header>
-		<main class="container">
-					 <div>
-						
-						<div class="text-align p-3"><h5><i>*Select country/currency and <br/> input Amount to convert</i></h5></div>
-						<div class="text-center result" id="conversion"></div>
-						<br/>
-						<div class="d-flex justify-content-center">	
-								<div class="">
-									<div class="form-group">
-										<label><b>From:</b></label>
-										<select class="form-control" id="from-currency">
+
+<head>
+  <title>Currency Converter</title>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#000">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./public/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+
+<body id="bg-body">
+  <header class="container-fluid bg-header">
+    <div class="text-center">
+      <h2 class="p-2">Currency Converter</h2>
+    </div>
+  </header>
+  <main class="container">
+    <div>
+      <div class="text-align p-3">
+        <h5><i>*Select country/currency and <br/> input Amount to convert</i></h5>
+      </div>
+      <div class="text-center result" id="conversion"></div>
+      <br/>
+      <div class="d-flex justify-content-center">
+        <div class="form-out">
+          <div class="form-group">
+            <label><b>From:</b></label>
+            <select class="form-control" id="from-currency">
 										</select>
-								</div>
-								<div class="form-group">
-									     <label><b>To:</b></label>
-										<select class="form-control" id="to-currency">
+          </div>
+          <div class="form-group">
+            <label><b>To:</b></label>
+            <select class="form-control" id="to-currency">
 										</select>
-								</div>
-								<div class="form-group">
-									     <label><b>Amount:</b></label>
-										<input placeholder="0.00" size="20" class="form-control" type="number" id="amount"/>
-								</div>
-								<button id="convert-amount" class="form-control btn-secondary">Convert</button>
-								</div>						
-						</div>
-				</div>				
-        </main>
-        <footer>
-		<div class="text-center footCopy"><p> &copy;<a href="#">Dindera</a> </p></div>
-		</footer>
-			<script src="public/js/indexedb/idb.js"></script>
-	     	<script src="public/js/converter.js" ></script>
-	</body>
-	
+          </div>
+          <div class="form-group">
+            <label><b>Amount:</b></label>
+            <input placeholder="0.00" class="form-control" type="number" id="amount" />
+          </div>
+          <div class="pt-3">
+            <button id="convert-amount" class="form-control btn-bg">Convert</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="text-center footCopy">
+      <p><a id="a" href="https://github.com/Dindera/currency_converter">Made for ALC 3.0 </a></p>
+      <p> &copy;<a id="a" href="https://dindera.github.io/">2018 Dindera</a></p>
+    </div>
+  </footer>
+  <script src="public/js/indexedb/idb.js"></script>
+  <script src="public/js/converter.js"></script>
+</body>
 </html>

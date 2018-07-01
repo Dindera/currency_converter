@@ -1,19 +1,7 @@
 
+// create a database 
 const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
     switch(dbUpgrade.oldVersion) {
-    //   case 0:
-    //    dbUpgrade.createObjectStore('countries', {keyPath: 'currencyName'});
-
-    //    case 1: 
-    //       const countryStore = dbUpgrade.transaction.objectStore('countries');
-    //       countryStore.createIndex('country', 'currencyName');
-    //       countryStore.createIndex('country_code', 'currencyId');
-   
-    //   case 2:
-    //   dbUpgrade.createObjectStore('rates', {keyPath: 'query'});
-    // //   const rateStore = dbUpgrade.transaction.objectStore('rates')
-    // //    const rateStore =  dbUpgrade.createObjectStore('rates', {keyPath: 'query'});
-    // rateStore.createIndex('rates', 'query');
 
     case 0:
     const countryStore = dbUpgrade.createObjectStore('countries', {keyPath: 'currencyName'} );
@@ -24,13 +12,13 @@ const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{
    
     }
   });
-// let toast = document.getElementById('toast');
+
 
 //Check for service worker update
 const _updateReady = (worker) => {
-            console.log('New Version Available')
-             worker.postMessage({ action: 'skipWaiting' })
-            console.log('err');
+            console.log('New Version Available');
+             worker.postMessage({ action: 'skipWaiting' });
+          
 };
 
 const _trackInstalling = (worker) => {
@@ -38,10 +26,10 @@ const _trackInstalling = (worker) => {
         if (worker.state === 'installed') {
              _updateReady(worker);
         }
-    })
+    });
 };
 
-
+// register service worker
 if ('serviceWorker' in navigator) {
     
     navigator.serviceWorker.register('sw.js').then(reg => {
@@ -55,28 +43,18 @@ if ('serviceWorker' in navigator) {
             return;
         }
         reg.addEventListener('updatefound', () => {
-            _trackInstalling(reg.installing)
-        })
+            _trackInstalling(reg.installing);
+        });
     }).catch(error => {
-        console.log('fail', error)
+        console.log('fail', error);
     });
     // Refresh only once
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-        window.location.reload()
-    })
+        window.location.reload();
+    });
 }
 
-
-
-
-
-
-//   dbPromise.then(db=>{
-//     let countries = db.transaction('countries').objectStore('countries');
-//    return countries.put();
-//    }).then( val => {
-//        console.log('The value result is', val);
-//    });
+//cA class to contain methods for getting countries and converting currencies
 
 class FreeCurrencyConverter {
     
@@ -94,13 +72,12 @@ class FreeCurrencyConverter {
                 if (typeof results['results'] != "undefined") {
                     callback(results['results'])
                 } else {
-                    callback({'Error': 'Not found'})
+                    callback({'Error': 'Not found'});
                 }
             }).catch(err => {
                 dbPromise.then(db=>{
                     let countries = db.transaction('countries');
                    let  countriesStore = countries.objectStore('countries');
-                    // countriesStore.put(countryAbbreviations[countryAbbreviation]);
     
                     countriesStore.getAll().then(results => {
                         if (typeof results != "undefined") {
@@ -113,7 +90,7 @@ class FreeCurrencyConverter {
 
             }); 
         })
-      })
+      });
     }
   
     convert(fromCurrency, toCurrency, amount, callback){
@@ -128,33 +105,13 @@ class FreeCurrencyConverter {
             }).then(json => {
 
                  dbPromise.then(db=>{
-                let rates = db.transaction('rates', 'readwrite')
+                let rates = db.transaction('rates', 'readwrite');
                let ratesStore = rates.objectStore('rates');
                json.query = query;
                console.log(json);
                 ratesStore.put(json);
                });
-                // let val = json[query]['val'];
-                // dbPromise.then(db=>{
-                //    const rates = db.transaction('rates', 'readwrite')
-                //    let rateStore = rates.objectStore('rates');
-                //    json.query = query;                    
-                //     // console.log(json);
-                //     rateStore.put(json);
-                //    }).then(val =>{
-                //        console.log('The value result is', val);
-                //    });
-                
-                    // let val = json[query]['val'];
-                // dbPromise.then(db => {
-                //     const rates = db.transaction('rates', 'readwrite')
-                //    const  rateStore = rates.objectStore('rates');
-                //    json.query = query;                    
-                //     console.log(json);
-                //     rateStore.put(json);
-                //    }).then(val =>{
-                //        console.log('The value result is', val);
-                //    });
+
             console.log('RES',json);
            
             let val = json[query]['val'];
@@ -167,12 +124,10 @@ class FreeCurrencyConverter {
                 console.log(err);
                 callback(err);
             }
-        }).catch((err) => {
+        }).catch((err) => {   // catch the recieved rates in database when offline
             dbPromise.then(db => {
                 let rates = db.transaction('rates');
                 let ratesStore = rates.objectStore('rates');
-                // json.query = query;
-                // console.log(json);
                 ratesStore.get(query).then(json => {
                     let val = json[query]['val'];
                     if (val) {
@@ -184,27 +139,8 @@ class FreeCurrencyConverter {
                         callback(err);
                     }
                 });
-            })
+            });
         });
-    //     .catch((err) => {dbPromise.then(db => {
-    //         let rates = db.transaction('rates');
-    //         let ratesStore = rates.objectStore('rates');
-    //         // json.query = query;
-    //         // console.log(json);
-    //          ratesStore.get(query);
-    //     }).get(query).then(json=> {
-    //         let val = json[query]['val'];
-    //         if (val) {
-    //             let total = val * amount;
-    //             callback(null, Math.round(total * 100) / 100);
-    //         }
-    //         else {
-    //             let err = new Error("Value not found for " + query);
-    //             console.log(err);
-    //             callback(err);
-    //         }
-    //     });
-    // });
   }
 }
 
@@ -221,7 +157,7 @@ class FreeCurrencyConverter {
     conversionRate.convert(from, to, amount, (err, amount) => {
         // console.log(amount);
         // console.log(typeof amount);
-    //    console.log(json);
+        //console.log(json);
   
         if (amount <= 0 || isNaN(amount)) {
             amount = '0.00';
@@ -240,13 +176,13 @@ class FreeCurrencyConverter {
     ];
   
     conversionRate.getCountries((countryAbbreviations) => {
-        console.log('countryAbbreviations: ', countryAbbreviations);
+        // console.log('countryAbbreviations: ', countryAbbreviations);
   
         for (let el in elements) {
             for (let countryAbbreviation in countryAbbreviations) {
                 
-            dbPromise.then(db=>{
-                let countries = db.transaction('countries', 'readwrite')
+            dbPromise.then(db=>{  // store recieved data in the database
+                let countries = db.transaction('countries', 'readwrite');
                let  countriesStore = countries.objectStore('countries');
                 countriesStore.put(countryAbbreviations[countryAbbreviation]);
                });
@@ -256,7 +192,7 @@ class FreeCurrencyConverter {
                 elements[el].add(option);
             }
         }
-    })
+    });
   }
 
 
