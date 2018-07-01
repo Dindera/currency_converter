@@ -1,4 +1,4 @@
-const  REPO = '';///currency_converter
+const  REPO = '/currency_converter';///currency_converter
 
 // create a database 
 const dbPromise = idb.open('currency_converter', 3, dbUpgrade =>{

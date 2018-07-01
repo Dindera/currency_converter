@@ -2,7 +2,7 @@
 const cacheName = "currency_converter_v1";
 const convertCache = "currency_converter_idb";
 const cacheAll = [cacheName, convertCache];
-const REPO = '';///currency_converter
+const REPO = '/currency_converter';///currency_converter
 
 /*
 Install caches in storage
