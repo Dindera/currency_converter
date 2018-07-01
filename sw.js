@@ -1,7 +1,7 @@
 const cacheName = "currency_converter_v1";
 const convertCache = "currency_converter_idb";
 const cacheAll = [cacheName, convertCache];
-const REPO = '/currency_converter';///currency_converter
+const REPO = '/currency_converter';// or const REPO = ''; //for local hosting
 
 /*
 Install caches in storage
@@ -27,9 +27,7 @@ self.addEventListener("install", event => {
 
 // event for activate when new cache name is discovered
 self.addEventListener("activate", event => {
-    console.log('StarACT');
     self.clients.claim();
-    console.log('AAACLMDONE');
     event.waitUntil(
         caches.keys().then(cacheFiles => {
             return Promise.all(
@@ -64,7 +62,6 @@ self.addEventListener("fetch", event => {
         }
         return;
     }
-
     //this only handles external request alone
     event.respondWith(
         caches.match(event.request).then(response => {
