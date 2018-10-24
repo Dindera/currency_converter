@@ -1,9 +1,10 @@
 # currency_converter
-Currency Converter Application
+## A Currency Converter Application
 
-THIS PROJECT IS AN ALC, GOOGLE, UDACITY SCHOLARSHIP CHALLENGE
+### THIS PROJECT IS AN ALC, GOOGLE, UDACITY SCHOLARSHIP CHALLENGE
 
-NAVIGATE TO https://dindera.github.io/currency_converter/ to see app
+#### NAVIGATE TO [Currency Converter](https://dindera.github.io/currency_converter/) to see app
 
-To run the app locally, change const Repo = '';
+To run the application locally, change const Repo = '';
+
 
