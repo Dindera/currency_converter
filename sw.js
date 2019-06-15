@@ -18,8 +18,8 @@ self.addEventListener("install", event => {
                 REPO + "/public/js/indexedb/idb.js",
                 REPO + "/public/css/favicon.png",
                 "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css",
-                "https://free.currencyconverterapi.com/api/v5/countries",
-                "https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y"
+                "https://free.currconv.com/api/v7/countries?apiKey=fdb1e6a369b3166fdd5e",
+                "https://free.currconv.com/api/v7/convert?q=USD_PHP&compact=ultra&apiKey=fdb1e6a369b3166fdd5e"
             ]);
         })
     );
