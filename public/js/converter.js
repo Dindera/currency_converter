@@ -60,13 +60,14 @@ if ('serviceWorker' in navigator) {
 class FreeCurrencyConverter {
     
     constructor() {
-        this.apiUrl = 'https://free.currencyconverterapi.com';
-        this.countriesEndpoint = '/api/v5/countries';
-        this.convertEndpoint = '/api/v5/convert';
+        this.apiUrl = 'https://free.currconv.com';
+        this.apiKey = 'apiKey=fdb1e6a369b3166fdd5e';
+        this.countriesEndpoint = '/api/v7/countries?';
+        this.convertEndpoint = '/api/v7/convert';
     }
   
     getCountries(callback) {
-        fetch(this.apiUrl + this.countriesEndpoint)
+        fetch(this.apiUrl + this.countriesEndpoint + this.apiKey)
             .then(function(response) {
                 return response.json();
             }).then(function(results) {
@@ -98,7 +99,7 @@ class FreeCurrencyConverter {
         fromCurrency = encodeURIComponent(fromCurrency);
         toCurrency = encodeURIComponent(toCurrency);
         const query = `${fromCurrency}_${toCurrency}`;
-        let url = `${this.apiUrl}${this.convertEndpoint}?q=${query}&compact=y`;
+        let url = `${this.apiUrl}${this.convertEndpoint}?q=${query}&compact=ultra&${this.apiKey}`;
   
         fetch(url)
             .then(function(response) {
@@ -115,7 +116,8 @@ class FreeCurrencyConverter {
 
             console.log('RES',json);
            
-            let val = json[query]['val'];
+            let val = json[query];
+            
             if (val) {
                 let total = val * amount;
                 callback(null, Math.round(total * 100) / 100);
@@ -130,7 +132,7 @@ class FreeCurrencyConverter {
                 let rates = db.transaction('rates');
                 let ratesStore = rates.objectStore('rates');
                 ratesStore.get(query).then(json => {
-                    let val = json[query]['val'];
+                    let val = json[query];
                     if (val) {
                         let total = val * amount;
                         callback(null, Math.round(total * 100) / 100);
@@ -156,9 +158,7 @@ class FreeCurrencyConverter {
     const amount = parseFloat(document.getElementById('amount').value);
   
     conversionRate.convert(from, to, amount, (err, amount) => {
-        // console.log(amount);
-        // console.log(typeof amount);
-        //console.log(json);
+  
   
         if (amount <= 0 || isNaN(amount)) {
             amount = '0.00';
@@ -177,7 +177,7 @@ class FreeCurrencyConverter {
     ];
   
     conversionRate.getCountries((countryAbbreviations) => {
-        // console.log('countryAbbreviations: ', countryAbbreviations);
+        
   
         for (let el in elements) {
             for (let countryAbbreviation in countryAbbreviations) {
